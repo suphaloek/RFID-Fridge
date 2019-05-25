@@ -1,0 +1,206 @@
+<ion-header>
+
+  <ion-toolbar color = 'dark'>
+      <ion-title>
+        รายการวัตถุดิบภายในตู้แช่เย็น
+      </ion-title>
+    </ion-toolbar>
+    
+</ion-header>
+
+<ion-content padding  [style.backgroundColor]="bgcolor1">
+
+    
+        <ion-segment  color="primary">
+          <ion-segment-button value="Tag" (click)='pauseBarcode()'>
+              Tag
+          </ion-segment-button>
+          <ion-segment-button value="Barcode" (click)='pauseTag()'>
+              Barcode
+          </ion-segment-button>
+          <ion-segment-button value="All" (click)='allList()'>
+              All
+          </ion-segment-button>
+         
+        </ion-segment>
+        <br>
+     
+<!-- 
+  <ion-toolbar no-border-top *ngIf="demo != 'Title'" >
+    <ion-segment [style.backgroundColor]="bgcolor1">
+      <ion-segment-button value="free" (click)=' pauseBarcode()'>
+        Tag
+      </ion-segment-button>
+      <ion-segment-button value="top" (click)=' pauseTag()'>
+        Barcode
+      </ion-segment-button>
+      <ion-segment-button value="paid" (click)='allList()'>
+        All
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar> -->
+
+  <ion-searchbar (ionInput)="getitems($event)" clearInput></ion-searchbar>
+    <br>
+    
+    <ion-item *ngFor="let item of itemList" >
+          <ion-avatar item-left >
+              <button   ion-fab mini color="dark" (click)="btnActivate(item.NumberPath)" ><ion-icon name="pricetag"></ion-icon></button>
+            </ion-avatar>
+            
+
+            <ion-label *ngIf="item.CountDay != 'Expired' && item.CountDay > '3 Days' ">
+            <div class="row header">
+                <!-- <div class="col"><h5 style="color:rgb(56, 56, 56);font-size:15px;" (click)=selectEdditItem(item)> {{ item.Name }}</h5></div> -->
+                <div class="col"><h5 style="color:rgb(56, 56, 56);font-size:16px;" (click)=selectEdditItem(item)> {{ item.Name }}</h5></div>
+                <!-- <div class="col" col-3><ion-badge style="background-color:rgb(84, 241, 53)" ><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:15px;">{{ item.piece }} ชิ้น</h3></ion-badge></div> -->
+                  <ion-list *ngIf="item.RFID.row == 0 && item.Status=='w' " >
+                  <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">รอการแท็ก</h3></ion-badge></div>
+                </ion-list>
+                <ion-list *ngIf="item.RFID.row == 0 && item.Status=='D' " >
+                  <div class="col" align="right" col-4><ion-badge style="background-color:rgb(253, 239, 234)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(163, 162, 162);font-size:13px;">ออกหมด</h3></ion-badge></div>
+                </ion-list>
+                <ion-list *ngIf="item.RFID.row > 0 " >
+                  <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ item.RFID.row }} piece</h3></ion-badge></div>
+                </ion-list>
+                <ion-list>
+                  <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 236, 25)" (click)='expshow()'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ item.CountDay }}</h3></ion-badge></div>
+                </ion-list>
+               
+                 
+              </div>
+            </ion-label>
+
+            <ion-label *ngIf="item.CountDay != 'Expired' && item.CountDay <= '3 Days' && item.CountDay > '0 Days'">
+              <div class="row header">
+                  <!-- <div class="col"><h5 style="color:rgb(56, 56, 56);font-size:15px;" (click)=selectEdditItem(item)> {{ item.Name }}</h5></div> -->
+                  <div class="col"><h5 style="color:rgb(56, 56, 56);font-size:16px;" (click)=selectEdditItem(item)> {{ item.Name }}</h5></div>
+                  <!-- <div class="col" col-3><ion-badge style="background-color:rgb(84, 241, 53)" ><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:15px;">{{ item.piece }} ชิ้น</h3></ion-badge></div> -->
+                  
+                  <ion-list *ngIf="item.RFID.row == 0 && item.Status=='w' " >
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">รอการแท็ก</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list *ngIf="item.RFID.row == 0 && item.Status=='D' " >
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(253, 239, 234)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(163, 162, 162);font-size:13px;">ออกหมด</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list *ngIf="item.RFID.row > 0 " >
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ item.RFID.row }} piece</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list>
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(238, 218, 40)" (click)='expshow()'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ item.CountDay }}</h3></ion-badge></div>
+                  </ion-list> 
+                </div>
+              </ion-label>
+
+
+            <ion-label *ngIf="item.CountDay == 'Expired'  ">
+              <div class="row header">
+                  <div class="col"><h5 style="color:rgb(56, 56, 56);font-size:16px;" (click)=selectEdditItem(item)> {{ item.Name }}</h5></div>
+                  <!-- <div class="col" col-3><ion-badge style="background-color:rgb(84, 241, 53)" ><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:15px;">{{ item.piece }} ชิ้น</h3></ion-badge></div> -->
+                  <ion-list *ngIf="item.RFID.row == 0 && item.Status=='w' " >
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">รอการแท็ก</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list *ngIf="item.RFID.row == 0 && item.Status=='D' " >
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(253, 239, 234)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(163, 162, 162);font-size:13px;">ออกหมด</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list *ngIf="item.RFID.row > 0 " >
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)='showRFIDpeice(item.NumberPath)'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ item.RFID.row }} piece</h3></ion-badge></div>
+                  </ion-list>
+                  
+                  <ion-list>
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(238, 80, 40)" (click)='expshow()'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ item.CountDay }}</h3></ion-badge></div>
+                  </ion-list>
+                  </div>
+              </ion-label>
+    </ion-item>
+
+  
+
+      <ion-item  *ngFor="let barcode of itemList2" >
+
+          <ion-avatar item-left>
+              <!-- <img [src]="person.picture">
+              <ion-icon name="pricetag"></ion-icon> -->
+              <button   ion-fab mini color="dark"  ><ion-icon name="md-barcode"></ion-icon></button>
+            </ion-avatar>
+
+            <ion-label *ngIf="barcode.CountDay != 'Expired' && barcode.CountDay > '3 Days' ">
+              <div class="row header">
+                  <div class="col" ><h5 style="color:rgb(56, 56, 56);font-size:16px;" (click)=selectEdditItem2(barcode)> {{ barcode.Name }}</h5></div>
+                    <ion-list *ngIf='barcode.temp == 0'>
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(253, 239, 234)" (click)=showBarcodepeice(barcode.code)><h3></h3><h3 style="color:rgb(163, 162, 162);font-size:13px;">ออกหมด</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list *ngIf='barcode.temp != 0'>
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)=showBarcodepeice(barcode.code)><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ barcode.temp }}/{{ barcode.piece }} piece</h3></ion-badge></div>
+                  </ion-list>
+                  <ion-list>
+                    <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 236, 25)" (click)='expshow()'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ barcode.CountDay }}</h3></ion-badge></div>
+                  </ion-list>
+                  </div>
+              </ion-label>
+
+              <ion-label *ngIf="item.CountDay != 'Expired' && barcode.CountDay <= '3 Days' && barcode.CountDay > '0 Days'">
+                <div class="row header">
+                    <div class="col" ><h5 style="color:rgb(56, 56, 56);font-size:16px;" (click)=selectEdditItem2(barcode)> {{ barcode.Name }} </h5></div>
+                    <ion-list *ngIf='barcode.temp == 0'>
+                      <div class="col" align="right" col-4><ion-badge style="background-color:rgb(253, 239, 234)" (click)=showBarcodepeice(barcode.code)><h3></h3><h3 style="color:rgb(163, 162, 162);font-size:13px;">ออกหมด</h3></ion-badge></div>
+                    </ion-list>
+                    <ion-list *ngIf='barcode.temp != 0'>
+                      <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)=showBarcodepeice(barcode.code)><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ barcode.temp }}/{{ barcode.piece }} piece</h3></ion-badge></div>
+                    </ion-list>
+                    <ion-list>
+                      <div class="col" align="right" col-4><ion-badge style="background-color:rgb(243, 194, 31)" (click)='expshow()'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ barcode.CountDay }}</h3></ion-badge></div>
+                    </ion-list>
+                    </div>
+                </ion-label>
+
+                <ion-label *ngIf="barcode.CountDay == 'Expired'  ">
+                  <div class="row header">
+                      <div class="col"><h5 style="color:rgb(56, 56, 56);font-size:16px;" (click)=selectEdditItem2(barcode)> {{ barcode.Name }}</h5></div>
+                      <!-- <div class="col" col-3><ion-badge style="background-color:rgb(84, 241, 53)" ><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:15px;">{{ item.piece }} ชิ้น</h3></ion-badge></div> -->
+                      <ion-list *ngIf='barcode.temp == 0'>
+                        <div class="col" align="right" col-4><ion-badge style="background-color:rgb(253, 239, 234)" (click)=showBarcodepeice(barcode.code)><h3></h3><h3 style="color:rgb(163, 162, 162);font-size:13px;">ออกหมด</h3></ion-badge></div>
+                      </ion-list>
+                      <ion-list *ngIf='barcode.temp != 0'>
+                        <div class="col" align="right" col-4><ion-badge style="background-color:rgb(60, 212, 218)" (click)=showBarcodepeice(barcode.code)><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ barcode.temp }}/{{ barcode.piece }} piece</h3></ion-badge></div>
+                      </ion-list>
+                      <ion-list>
+                        <div class="col" align="right" col-4><ion-badge style="background-color:rgb(248, 42, 27)" (click)='expshow()'><h3></h3><h3 style="color:rgb(255, 255, 255);font-size:13px;">{{ barcode.CountDay }}</h3></ion-badge></div>
+                      </ion-list>
+                    </div>
+                  </ion-label>
+
+            <!-- <h3 style="color:rgb(221, 86, 86);font-size:17px;"> Code: {{ barcode.code }} </h3>
+            <h4 style="color:gray;font-size:13px;">
+              Added : 
+              {{ barcode.timeKey | date:'d MMM y, hh:mm a.'}}  <ion-icon name="md-person-add"> {{ barcode.addBy }}</ion-icon>
+              <br>
+              EXP : 
+              {{ barcode.expitem | date: "dd/MM/yy" }}
+              </h4>   -->
+              <!-- <br>
+              exp. : 
+              {{ item.expitem | date: "dd/MM/yyyy" }}
+              <br>
+              วันคงเหลือ :
+              {{ item.CountDay }} 
+              <br> -->
+              
+            <!-- <button  ion-button large [style.backgroundColor]="colorButton2">{{ barcode.piece }} ชิ้น</button>
+            <button  ion-button large [style.backgroundColor]="colorButton1">{{ barcode.CountDay }}</button> -->
+           </ion-item>
+ 
+<!-- <ion-fab right middle bottom>
+  <button ion-fab  color="secondary" (click)="gotoadd()"><ion-icon name="add"></ion-icon></button>
+</ion-fab> -->
+
+<ion-fab right bottom #fab4>
+  <button ion-fab mini color="secondary"><ion-icon name="add"></ion-icon></button>
+  <ion-fab-list side='left'>
+    <button ion-fab (click)="gotoadd()" color='primary'><ion-icon name="pricetag"></ion-icon></button>
+    <button ion-fab (click)="selectBarcode()" color='primary'><ion-icon name="barcode"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>
+</ion-content>
+
+<!-- [style.backgroundColor]="color"  -->

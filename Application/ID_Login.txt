@@ -1,0 +1,7 @@
+ID admin for register
+id: Admin
+Pass: 1234
+
+ID user for test program
+id: root
+pass: 1234 

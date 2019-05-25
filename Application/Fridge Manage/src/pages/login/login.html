@@ -1,0 +1,42 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-toolbar color = 'dark'>
+
+<ion-navbar>
+    <ion-title>แอปพลิเคชั่นจัดการวัตถุดิบ</ion-title>
+  </ion-navbar>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding [style.backgroundColor]="bgcolor">
+        
+      
+        <img src="https://sv1.picz.in.th/images/2019/04/09/tJJBvk.jpg" alt="">
+     
+        
+        <ion-item [style.backgroundColor]="bgcolor">
+        <ion-label stacked>ID</ion-label>
+        <ion-input type="text" [(ngModel)] ="id" ></ion-input>
+       </ion-item>
+
+
+       <ion-item [style.backgroundColor]="bgcolor">
+          <ion-label stacked>PASSWORD</ion-label>
+          <ion-input   type="password" [(ngModel)] ="pass"></ion-input>
+        </ion-item>
+
+        
+    <br>
+    <button ion-button full padding [style.backgroundColor]="buttoncolor" (click)="doLogin()">Login</button>
+    <br>
+    <button ion-button small outline color='danger' (click)="presentPrompt()">Register</button>
+        
+  
+</ion-content>

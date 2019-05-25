@@ -1,0 +1,38 @@
+<!--
+  Generated template for the AdminPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='danger'>
+    <ion-title>หน้าผู้ดูแล</ion-title> 
+    <ion-buttons end>
+      <button ion-button (click)='closeAdmin()' ><h1><ion-icon name="ios-log-out"></ion-icon></h1></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+  <button color='secondary' ion-button default outline (click)='register()'>เพิ่มผู้ใช้</button>
+  <br>
+  <h4>รายชื่อผู้ใช้ทั้งหมด</h4>
+  <br>
+  <div class="row header">
+      <div class="col">ชื่อผู้ใช้</div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <hr>
+    
+    <div class="row"  *ngFor="let user of itemlist$">
+      <div class="col"><p>{{ user.ID_login }}</p></div>
+      <div class="col" end><button  ion-button small outline (click)='editPass(user.ID_login)'>เปลี่ยนรหัส</button></div>
+      <div class="col"><button color='danger' ion-button small outline (click)='deleteUser(user.ID_login)'>ลบผู้ใช้</button></div>
+    </div>
+
+</ion-content>

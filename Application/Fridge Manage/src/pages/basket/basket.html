@@ -1,0 +1,86 @@
+<!--
+  Generated template for the BasketPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar color = 'dark'>
+
+      <ion-title>
+        วัตถุดิบในตะกร้า
+      </ion-title>
+      
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding >
+   
+          <ion-card [style.backgroundColor]="bgcolor2"> 
+           
+
+           <button  ion-button large color="danger" (click)="edit_1Name()"> {{ itemName1 }} </button>
+           <button  ion-button large color="light"> {{ amount1 }} ชิ้น</button> 
+           <button  ion-button outline color="light" (click)="edit_1Weight()"> {{ temp1 }} กรัม / ชิ้น</button> 
+           
+             <div class="current">
+            
+            <br> {{  selectedRange1 }} / 5.0 Kg</div>
+
+            <round-progress
+            [current]="selectedRange1"
+            [max]="5.0"
+            [color]="'#37ff59'"
+            [background]="'#e2ffef'"
+            [radius]="92"
+            [stroke]="25"
+            [semicircle]="true"
+            [rounded]="true"
+            [clockwise]="true"
+            [responsive]="false"
+            [duration]="200"
+            [animation]="'easeInOutQuart'"
+            [animationDelay]="0"></round-progress>
+
+          <br>
+          <br>
+        
+        </ion-card>
+
+        <hr>
+     
+        <ion-card  [style.backgroundColor]="bgcolor2">   
+           
+          <button  ion-button large color="danger" (click)="edit_2Name()"> {{ itemName2 }} </button>
+          <button  ion-button large color="light"> {{ amount2 }} ชิ้น</button>
+          <button  ion-button outline color="light" (click)="edit_2Weight()"> {{ temp2 }} กรัม / ชิ้น</button> 
+             <div class="current">
+                <br>{{  selectedRange2 }} / 5.0 Kg</div>
+             
+                
+            <round-progress
+            [current]="selectedRange2"
+            [max]="5.0"
+            [color]="'#37ff59'"
+            [background]="'#e2ffef'"
+            [radius]="92"
+            [stroke]="25"
+            [semicircle]="true"
+            [rounded]="true"
+            [clockwise]="true"
+            [responsive]="false"
+            [duration]="200"
+            [animation]="'easeInOutQuart'"
+            [animationDelay]="0"></round-progress>
+      
+          <br>
+          <br>
+          </ion-card>
+          <hr>
+
+      </ion-content>
+
+      
+      

@@ -1,0 +1,48 @@
+<!--
+  Generated template for the ReadcodePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>ข้อมูลวัตถุดิบ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+  <br>
+    <ion-list>
+    <ion-item>
+    <!-- <h4 style="color:rgb(82, 80, 80)"> -->
+    <h4 style="color:rgb(250, 9, 9);font-size:20px;">Code: {{ item.code }}</h4>
+    <hr>
+    ชื่อ : {{ item.Name  }}
+    <br>
+    <hr>
+    หมดอายุวันที่ : {{ item.expitem | date: "dd/MMM/yyyy" }}
+    <br>
+    <hr>
+    <h4 style="color:rgb(25, 199, 2);font-size:17px;">
+    จำนวนที่คงเหลือ : {{ item.temp }} ชิ้น
+    </h4>
+    <hr>
+    <h4 style="color:rgb(182, 2, 199);font-size:17px;">
+    จำนวนที่จะนำออก : {{ piece }} ชิ้น
+    </h4>
+    <button ion-button small (click)="keyPiece()" outline color='primary'>ระบุจำนวน</button>
+    <button ion-button small outline color='primary' icon-only (click) = "upPiece()"><ion-icon name="ios-arrow-up"></ion-icon></button>
+    <button ion-button small outline color='primary' icon-only (click) = "downPiece()"><ion-icon name="ios-arrow-down"></ion-icon></button>
+    <br>
+    <!-- </h4> -->
+    </ion-item>
+    </ion-list>
+  <button ion-button full (click)="presentPrompt()" color='secondary'>นำออก</button>
+  <br>
+  
+
+</ion-content>

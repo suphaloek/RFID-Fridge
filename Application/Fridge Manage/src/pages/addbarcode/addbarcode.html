@@ -1,0 +1,83 @@
+<!--
+  Generated template for the AddbarcodePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='dark'>
+    <ion-title>เพิ่มข้อมูล Barcode</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-select full placeholder="เลือกวัตถุดิบ"  [(ngModel)]="newItem" #mySelect1>
+    <ion-option *ngFor="let item1 of itemList1" >{{item1.Name}}</ion-option>
+</ion-select>
+
+<ion-select full placeholder="เลือกวัตถุดิบ"  [(ngModel)]="newItem" #mySelect2>
+    <ion-option *ngFor="let item2 of itemList2" >{{item2.Name}}</ion-option>
+</ion-select>
+
+<ion-select full placeholder="เลือกวัตถุดิบ"  [(ngModel)]="newItem" #mySelect3>
+    <ion-option *ngFor="let item3 of itemList3" >{{item3.Name}}</ion-option>
+</ion-select>
+
+<ion-select full placeholder="เลือกวัตถุดิบ"  [(ngModel)]="newItem" #mySelect4>
+    <ion-option *ngFor="let item4 of itemList4" >{{item4.Name}}</ion-option>
+</ion-select>
+
+<ion-content padding [style.backgroundColor]="colorBG">
+  
+    <button ion-button icon-start color='secondary' (click)="scan()">
+        <ion-icon name="barcode"></ion-icon>
+        SCAN
+      </button>
+
+      <button ion-button block [style.backgroundColor]="colorPiece" outline color='dark' (click)='Code_piece()'>Code: {{code}}</button>
+
+  <h4 style="color:black;font-size:15px;" >เลือกประเภทวัตถุดิบ</h4>
+  <!-- <ion-input  type="text"  [(ngModel)] ="newItem"></ion-input> --> 
+  <div class="row">
+      <div class="col"><img src="https://sv1.picz.in.th/images/2019/04/16/tIGvvb.jpg" style="width : 140% ; height : 110%" (click)="openSelect1()" ><dd>เนื้อสัตว์</dd></div>
+      <div class="col"><img src="https://sv1.picz.in.th/images/2019/04/16/tM0I9q.jpg" style="width : 140% ; height : 110%" (click)="openSelect2()" ><dd>ผัก</dd></div>
+      <div class="col"><img src="https://sv1.picz.in.th/images/2019/04/16/tM7E8D.jpg" style="width : 140% ; height : 110%" (click)="openSelect3()" ><dd>ทะเล</dd></div>
+  </div>
+  <br>
+  <br>
+            <button ion-button default outline color='primary' (click)="openSelect4()">วัตถุดิบเพิ่มเติม</button>
+
+  <br>
+            <h4 style="color:black;font-size:15px;" >ชื่อวัตถุดิบ</h4>
+            <button ion-button block [style.backgroundColor]="colorPiece" outline color='dark' (click)='Name_Raw()'>{{newItem}}</button>
+
+  <br>
+            <h4 style="color:black;font-size:15px;" >จำนวน</h4>
+
+            <button ion-button block [style.backgroundColor]="colorPiece" outline color='dark' (click)='Num_piece()' >{{piece}}</button>
+            <button ion-button small color='light' icon-only (click) = "upPiece()"><ion-icon name="ios-arrow-up"></ion-icon></button>
+            <button ion-button small color='light' icon-only (click) = "downPiece()"><ion-icon name="ios-arrow-down"></ion-icon></button>
+            <br>
+            <button ion-button small outline [style.backgroundColor]="colorPiece" (click) = "upPiece10()">+10</button>
+            <button ion-button small outline [style.backgroundColor]="colorPiece" (click) = "upPiece20()">+20</button>
+            <button ion-button small outline [style.backgroundColor]="colorPiece" (click) = "upPiece30()">+30</button>
+            <button ion-button small outline [style.backgroundColor]="colorPiece" (click) = "upPiece40()">+40</button>
+            <button ion-button small outline [style.backgroundColor]="colorPiece" (click) = "upPiece50()">+50</button>
+            <button ion-button small outline [style.backgroundColor]="colorPiece" (click) = "upPiece100()">+100</button>
+
+     <br>
+        <br>
+        <h4 style="color:black;font-size:15px;" >วันหมดอายุ</h4>
+        <button ion-button block outline [style.backgroundColor]="colorPiece" color='dark'>
+         <ion-datetime displayFormat="DD MMMM YYYY" min="2019-01" max="2025-12" pickerFormat="DD MMMM YYYY" [(ngModel)] ="expitem"></ion-datetime>
+        </button>
+       <br>
+
+        <button ion-button full color="light" 
+     (click)="refresh()">รีเซ็ต</button>  
+     <button ion-button full color="secondary" 
+     (click)="Add()" >เพิ่ม</button> 
+
+</ion-content>

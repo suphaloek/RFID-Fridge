@@ -1,0 +1,81 @@
+<!--
+  Generated template for the NameRawPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='dark'>
+    <ion-title>ชื่อและประเภทวัตถุดิบทั้งหมด</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+
+  <div class="row header">
+      <ion-select full placeholder="เลือกประเภทวัตถุดิบ"  [(ngModel)]="select"  >
+          <ion-option  >เนื้อสัตว์</ion-option>
+          <ion-option  >ผัก</ion-option>
+          <ion-option  >ทะเล</ion-option>
+          <ion-option  >อื่นๆ</ion-option>
+      </ion-select>
+      <div class="col">    <ion-buttons>
+          <button ion-button small icon-only color='light' (click)='refresh()'>
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+        </ion-buttons></div>
+    
+
+  </div>
+
+    <ion-item style="background-color:rgb(217, 221, 214)">
+        <ion-label position="stacked">กรอกชื่อวัตถุดิบ</ion-label>
+        <ion-input [(ngModel)] ="nameItem"></ion-input> 
+      </ion-item>
+
+      <button ion-button full color="danger" 
+       (click)="additem()" >เพิ่ม</button>  
+<br>
+  <div class="row header">
+      <div class="col" style="background-color:rgb(250, 178, 70)"><br><b><u>เนื้อสัตว์</u></b><hr> 
+        <div class="col" *ngFor="let item1 of itemList1">
+          <ion-list>{{item1.Name}}</ion-list>
+        </div>
+      </div>
+ 
+      <div class="col" style="background-color:chartreuse"><br><b><u>ผัก</u></b><hr>
+        <div class="col" *ngFor="let item2 of itemList2">
+            <ion-list>{{item2.Name}}</ion-list>
+          </div>
+      </div>
+      
+      <div class="col" style="background-color:deepskyblue"><br><b><u>ทะเล</u></b><hr>
+        <div class="col" *ngFor="let item3 of itemList3">
+            <ion-list>{{item3.Name}}</ion-list>
+          </div>
+      </div>
+
+      <div class="col" style="background-color:rgb(187, 196, 191)"><br><b><u>อื่นๆ</u></b><hr>
+        <div class="col" *ngFor="let item4 of itemList4">
+            <ion-list>{{item4.Name}}</ion-list>
+          </div>
+      </div>
+    </div>
+   
+    <!-- <div class="row header" >
+      <div class="col" align="center" colspan="2"><b>เนื้อสัตว์</b></div>
+      <div class="col" align="center"><b>ผัก</b></div>
+      <div class="col" align="center" col-2><b>ทะเล</b></div>
+      <div class="col" align="center" col-2><b>อื่นๆ</b></div>
+    </div>
+    <div class="row" *ngFor="let item1 of itemList1"  >
+        <div class="col" align="center" >{{item1.Name}}</div>
+        <div class="col" align="center" *ngFor="let item2 of itemList2">{{item2.Name}}</div>
+        <div class="col" align="center" col-2></div>
+        <div class="col" align="center" col-2></div>
+      </div> -->
+ 
+</ion-content>

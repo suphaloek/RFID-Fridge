@@ -1,0 +1,30 @@
+page-basket {
+    .scroll-content{
+        padding: 0px !important;
+    }
+    .box{ margin: 0% 5%; padding: 0px 10px; font-size: 1.4rem; height: 60%; background-color: #fff; opacity: 1 !important; margin-top: 20%; border: 1px solid gray; }
+    
+    round-progress{
+        margin: 20% 25% 0% 25%;
+    }
+    .main_box{
+        height: 100%;
+    }
+    [col-6]{
+        text-align: center;
+    }
+    .range-md .range-knob, .range-ios .range-knob{
+        width: 30px;
+        height: 30px;
+    }
+    .range-md .range-bar, .range-ios .range-bar{
+        top: 28px;
+    }
+    .label-md, .label-ios{ margin-top: 16px !important;}
+    .current {
+        position: absolute;
+        margin: 34% 25% 0% 35%;
+        font-weight: 400;
+        font-size: 2rem;
+    }
+}

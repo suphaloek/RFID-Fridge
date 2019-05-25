@@ -1,0 +1,7 @@
+{
+  "name": "RSTApplication",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
